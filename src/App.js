@@ -1,11 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from "react"
 
-function App() {
+function App () {
+  const [state, setState] = useState("no-val");
+
+
+  useEffect(() => {
+    async function serverCall () {
+      return 'async-val'
+    }
+    serverCall().then(setState);
+  }, []);
+
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        {state}
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
